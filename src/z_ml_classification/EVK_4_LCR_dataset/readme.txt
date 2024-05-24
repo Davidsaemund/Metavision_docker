@@ -1,0 +1,2 @@
+python3 generate_hdf5.py EVK_4_LCR_dataset/test/right.raw -o EVK_4_LCR_dataset/test --delta-t 10000 --preprocess histo_quantized --neg_bit_len_quantized 4 --total_bit_len_quantized 8 --normalization_quantized --num-workers
+ 32 --height_width 360 640

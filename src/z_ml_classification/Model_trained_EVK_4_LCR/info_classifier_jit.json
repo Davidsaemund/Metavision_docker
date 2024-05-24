@@ -1,0 +1,22 @@
+{
+    "delta_t": 10000,
+    "height": 360,
+    "label_delta_t": 10000,
+    "label_map": [
+        "background",
+        "left",
+        "center",
+        "right"
+    ],
+    "models": "ConvRNNClassifier",
+    "num_classes": 4,
+    "preprocess": "histo_quantized",
+    "preprocess_channels": 2,
+    "preprocess_kwargs": {
+        "negative_bit_length": 4,
+        "normalization": 1,
+        "total_bit_length": 8
+    },
+    "use_label_freq": true,
+    "width": 640
+}
