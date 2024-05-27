@@ -5,7 +5,7 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"dockerComposeFile": "Docker/docker-compose.yml",
 	"service": "metadocker",
-	"workspaceFolder": "/../workspaces/src"
+	"workspaceFolder": "/../workspaces/src",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
@@ -16,7 +16,18 @@
 	// "postCreateCommand": "uname -a",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			// Extension to add to the dec container
+			"extensions": [
+				"h5web.vscode-h5web",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"Percy.vscode-pydata-viewer"
+			]
+		}
+	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }

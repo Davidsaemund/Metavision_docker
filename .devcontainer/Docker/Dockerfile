@@ -40,6 +40,9 @@ RUN python3 -m pip install "numba==0.56.3" "profilehooks==1.12.0" "pytorch_light
 RUN python3 -m pip install "llvmlite==0.39.1" "pycocotools==2.0.7" "seaborn==0.11.2" "torchmetrics==0.7.2" "pillow==9.3.0"
 #Libtorch fo c++
 #COPY /home/davidsae14/Downloads/libtorch-cxx11-abi-shared-with-deps-1.13.1+cu117.zip /root
+
+# Additional tools not specified in the prophesee guide
+RUN apt update
 RUN apt-get install -y \
     git \
     x11vnc \
@@ -47,4 +50,8 @@ RUN apt-get install -y \
     net-tools \
     xvfb \
     language-pack-en-base \
-    libcanberra-gtk3-module
+    libcanberra-gtk-module \
+    libcanberra-gtk3-module \
+    libxcb-xinerama0
+
+RUN python3 -m pip install mlflow tensorboard pyqt5==5.14.0
