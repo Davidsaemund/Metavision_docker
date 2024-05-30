@@ -1,0 +1,22 @@
+[0.827s] Invoking command in '/workspaces/src/ros2_ws/src/classification_inference': PYTHONPATH=/workspaces/src/ros2_ws/build/classification_inference/prefix_override:/workspaces/src/ros2_ws/install/classification_inference/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/classification_inference build --build-base /workspaces/src/ros2_ws/build/classification_inference/build install --record /workspaces/src/ros2_ws/build/classification_inference/install.log --single-version-externally-managed install_data
+[1.046s] running egg_info
+[1.046s] writing ../../build/classification_inference/classification_inference.egg-info/PKG-INFO
+[1.047s] writing dependency_links to ../../build/classification_inference/classification_inference.egg-info/dependency_links.txt
+[1.047s] writing entry points to ../../build/classification_inference/classification_inference.egg-info/entry_points.txt
+[1.047s] writing requirements to ../../build/classification_inference/classification_inference.egg-info/requires.txt
+[1.047s] writing top-level names to ../../build/classification_inference/classification_inference.egg-info/top_level.txt
+[1.048s] reading manifest file '../../build/classification_inference/classification_inference.egg-info/SOURCES.txt'
+[1.049s] writing manifest file '../../build/classification_inference/classification_inference.egg-info/SOURCES.txt'
+[1.050s] running build
+[1.050s] running build_py
+[1.050s] running install
+[1.050s] running install_lib
+[1.052s] running install_data
+[1.052s] copying package.xml -> /workspaces/src/ros2_ws/install/classification_inference/share/classification_inference
+[1.052s] running install_egg_info
+[1.054s] removing '/workspaces/src/ros2_ws/install/classification_inference/lib/python3.10/site-packages/classification_inference-0.0.0-py3.10.egg-info' (and everything under it)
+[1.054s] Copying ../../build/classification_inference/classification_inference.egg-info to /workspaces/src/ros2_ws/install/classification_inference/lib/python3.10/site-packages/classification_inference-0.0.0-py3.10.egg-info
+[1.054s] running install_scripts
+[1.070s] Installing classification_inference script to /workspaces/src/ros2_ws/install/classification_inference/lib/classification_inference
+[1.070s] writing list of installed files to '/workspaces/src/ros2_ws/build/classification_inference/install.log'
+[1.102s] Invoked command in '/workspaces/src/ros2_ws/src/classification_inference' returned '0': PYTHONPATH=/workspaces/src/ros2_ws/build/classification_inference/prefix_override:/workspaces/src/ros2_ws/install/classification_inference/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/classification_inference build --build-base /workspaces/src/ros2_ws/build/classification_inference/build install --record /workspaces/src/ros2_ws/build/classification_inference/install.log --single-version-externally-managed install_data
