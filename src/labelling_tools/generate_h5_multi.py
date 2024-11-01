@@ -24,7 +24,7 @@ def run_metavision_conversion(data_folder, names, num_runs):
             else:
                 input_file = f"{data_folder}/{name}_{i}.raw"
             
-            command = f"{input_file}, -o {data_folder}, --delta-t 10000, --preprocess histo_quantized, --neg_bit_len_quantized 4, --total_bit_len_quantized 8, --normalization_quantized, --num-workers 32, --height_width 360 640"
+            #command = f"{input_file}, -o {data_folder}, --delta-t 10000, --preprocess histo_quantized, --neg_bit_len_quantized 4, --total_bit_len_quantized 8, --normalization_quantized, --num-workers 32, --height_width 360 640"
             preprocess_kwargs = get_preprocess_dict("histo_quantized")['kwargs']
             preprocess_kwargs.update({"negative_bit_length": 4,
                             "total_bit_length": 8,
@@ -34,7 +34,7 @@ def run_metavision_conversion(data_folder, names, num_runs):
                 generate_hdf5(paths=input_file,
                             output_folder=data_folder,
                             preprocess="histo_quantized",
-                            delta_t=10000,
+                            delta_t=25000,
                             n_processes=32, 
                             height=360,
                             width=640,
