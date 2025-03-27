@@ -3,7 +3,7 @@
   "enabled": true,
   "band_low_freq": 50,
   "band_high_freq": 520,
-  "filtering_mode": "BAND_PASS",
+  "filtering_mode": "BAND_CUT",
   "duty_cycle": 50,
   "start_threshold": 4,
   "stop_threshold": 4

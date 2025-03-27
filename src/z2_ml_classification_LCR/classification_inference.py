@@ -83,6 +83,9 @@ def inference_parser():
     parser.add_argument('--use-FF-model', action="store_true", help='use FF type of model')
     parser.add_argument('--max_rolling-window', type=int, default=4,
                         help='Maximum number of frames for calculating the rolling average of prediction')
+    parser.add_argument("--output-csv", type=str, default="",
+                    help="Path to a CSV file where classification scores for each frame will be saved")
+
    # args = parser.parse_args()
     return parser
 
@@ -106,6 +109,11 @@ def _proc(
 
     if args.use_FF_model:
         Q = deque(maxlen=args.max_rolling_window)
+
+    # Initialize a list to store classification scores for each frame
+    # Each element is a dictionary containing frame index and the scores
+    results = []
+    frame_index = 0
 
     for tensor in preprocessor:
         do_reset = False
@@ -136,10 +144,31 @@ def _proc(
         else:
             yhat_indice = np.argmax(yhat, axis=-1)
         yhat_cls = model_json["label_map"][yhat_indice]
-        model_predictions = f"[Background : {yhat[0]:.2f}] [Left : {yhat[1]:.2f}] [Center :  {yhat[2]:.2f}] [Right :  {yhat[3]:.2f}]"
-        ##model_predictions = f"[Background : {yhat[0]:.2f}] [Left : {yhat[1]:.2f}] [Right :  {yhat[2]:.2f}]"
+
+        # RNN model
+        try:
+            model_predictions = f"[Background : {yhat[0]:.2f}] [Left : {yhat[1]:.2f}] [Center :  {yhat[2]:.2f}] [Right :  {yhat[3]:.2f}]"
+
+        except:
+        # FFN model 
+            model_predictions = f"[Left : {yhat[0]:.2f}] [Background : {yhat[1]:.2f}] [Right :  {yhat[2]:.2f}]"
+
         #print("Background : ", yhat[0], " Paper : ", yhat[1], " Rock : ", yhat[2], " Scissor : ", yhat[3])
         print(model_predictions)
+
+
+        # Save classification scores for this frame into the results list.
+        # Adjust the dictionary keys if your label order is different.
+        results.append({
+            "frame": frame_index,
+            "background": float(yhat[0]),
+            "left": float(yhat[1]),
+            "center": float(yhat[2]),
+            "right": float(yhat[3]),
+        })
+        frame_index += 1
+
+
         # filter out background and predictions with low confidence value
         if yhat[yhat_indice] >= args.cls_threshold and yhat_indice != 0:
             cv2.putText(img, yhat_cls, (10, img.shape[0] - 60), FONT, 0.5, COLOR)
@@ -158,7 +187,21 @@ def _proc(
 
         if h5writer is not None:
             h5writer.write(yhat)
-
+    # After processing all frames, save the results if an output CSV path was provided.
+    if args.output_csv:
+        _save_results_csv(results, args.output_csv)
+        
+def _save_results_csv(results, csv_path):
+    """Save the results list to a CSV file."""
+    import csv
+    fieldnames = ["frame", "background", "left", "center", "right"]
+    # Create the output directory if it doesn't exist
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+    with open(csv_path, 'w', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for res in results:
+            writer.writerow(res)
 
 def main():
     args = inference_parser().parse_args()

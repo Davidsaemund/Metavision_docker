@@ -111,8 +111,8 @@ def autocomplete_params(params: argparse.Namespace):
 
 early_stop_callback = EarlyStopping(
     monitor='val_loss',
-    patience=120,
-    verbose=False,
+    patience=50,
+    verbose=True,
     mode='min'
 )
 
@@ -202,7 +202,7 @@ def train_parser():
                         help="Disable data augmentation during training")
     parser.add_argument("--train_plus_val", action="store_true",
                         help="if set, train using train+val, test on test")
-    parser.add_argument("--shuffle", action="store_true",
+    parser.add_argument("--shuffle", action="store_false",
                         help="shuffle the input dataset")
 
     # model params
