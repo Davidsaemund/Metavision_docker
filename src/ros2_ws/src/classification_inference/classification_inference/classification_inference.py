@@ -16,7 +16,7 @@ from collections import deque
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import Int32
 
 
 def viz_histo_filtered(im, val_max=0.5):
@@ -130,7 +130,7 @@ def _proc(
         
         # Publish yhat_cls to ROS 2 topic
         if publisher is not None:
-            publisher.publish(yhat_cls)
+            publisher.publish(int(yhat_indice))
 
         if do_reset and args.display_reset_memory:
             cv2.putText(img, "RESET MEMORY", (10, 20), FONT, 0.4, COLOR)
@@ -151,10 +151,10 @@ def _proc(
 class ModelPublisher(Node):
     def __init__(self):
         super().__init__('model_publisher')
-        self.publisher_ = self.create_publisher(String, 'classification_result', 10)
+        self.publisher_ = self.create_publisher(Int32, 'classify_results', 10)
 
     def publish(self, yhat_cls):
-        msg = String()
+        msg = Int32()
         msg.data = yhat_cls
         self.publisher_.publish(msg)
         self.get_logger().info(f'Publishing: {yhat_cls}')
