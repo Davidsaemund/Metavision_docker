@@ -3,7 +3,7 @@ import shutil
 import numpy as np
 
 # Directory paths
-source_dir = 'data'
+source_dir = 'event_cube_h5_no_split'
 train_dir = 'train'
 val_dir = 'val'
 test_dir = 'test'

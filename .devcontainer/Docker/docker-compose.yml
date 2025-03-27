@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     devices:
-      - /dev/bus/usb:/dev/bus/usb # change this according to the output of "lsusb | grep -i cypress"
+      - /dev/bus/usb/004/002:/dev/bus/usb/004/002 # change this according to the output of "lsusb | grep -i cypress"
     stdin_open: true
     ports:
       - 5920:5920

@@ -385,6 +385,17 @@ def main(args):
 
         # Display result
         frame_labelling_bboxes.draw_bboxes_on_frame()
+        # Draw a horizontal line in the middle of the screen
+        frame_height = frame_labelling_bboxes.drawing_frame.shape[0]
+        frame_width = frame_labelling_bboxes.drawing_frame.shape[1]
+        middle_y = frame_height // 2  # Calculate the y-coordinate for the middle
+        middle_x = frame_width // 2
+        line_color = (0, 255, 0)  # Green color for the line (BGR format)
+        line_thickness = 2  # Thickness of the line
+        # Draw the line on the frame
+        cv2.line(frame_labelling_bboxes.drawing_frame, (middle_x, 0), (middle_x, frame_height), line_color, line_thickness)
+
+
         cv2.imshow(window_title, frame_labelling_bboxes.drawing_frame)
 
         if save_image:

@@ -19,21 +19,29 @@ python3 raw_to_video.py -n left right center -i 5
 def run_metavision_conversion(data_folder, names, num_runs):
     for name in names:
         for i in range(1, num_runs + 1):  # Start the loop from 1
-            if num_runs == 1:
+            if num_runs == 0:
                 input_file = f"{data_folder}/{name}.raw"
             else:
                 input_file = f"{data_folder}/{name}_{i}.raw"
             
             #command = f"{input_file}, -o {data_folder}, --delta-t 10000, --preprocess histo_quantized, --neg_bit_len_quantized 4, --total_bit_len_quantized 8, --normalization_quantized, --num-workers 32, --height_width 360 640"
-            preprocess_kwargs = get_preprocess_dict("histo_quantized")['kwargs']
+            """ preprocess_kwargs = get_preprocess_dict("diff_quantized")['kwargs']
             preprocess_kwargs.update({"negative_bit_length": 4,
-                            "total_bit_length": 8,
+                            "negative_bit_length": 8,
                             "normalization": True,
+                            "preprocess_dtype": np.float32}) """
+            
+            """ preprocess_kwargs = get_preprocess_dict("event_cube")['kwargs']
+            preprocess_kwargs.update({"max_incr_per_pixel": 4,
+                            "split_polarity": False,
+                            "preprocess_dtype": np.float32}) """
+            preprocess_kwargs = get_preprocess_dict("multi_channel_timesurface")['kwargs']
+            preprocess_kwargs.update({
                             "preprocess_dtype": np.float32})
             try:
                 generate_hdf5(paths=input_file,
                             output_folder=data_folder,
-                            preprocess="histo_quantized",
+                            preprocess="multi_channel_timesurface",
                             delta_t=25000,
                             n_processes=32, 
                             height=360,
