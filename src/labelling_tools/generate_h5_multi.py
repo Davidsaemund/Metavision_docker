@@ -31,17 +31,17 @@ def run_metavision_conversion(data_folder, names, num_runs):
                             "normalization": True,
                             "preprocess_dtype": np.float32}) """
             
-            """ preprocess_kwargs = get_preprocess_dict("event_cube")['kwargs']
+            preprocess_kwargs = get_preprocess_dict("event_cube")['kwargs']
             preprocess_kwargs.update({"max_incr_per_pixel": 4,
-                            "split_polarity": False,
-                            "preprocess_dtype": np.float32}) """
-            preprocess_kwargs = get_preprocess_dict("multi_channel_timesurface")['kwargs']
-            preprocess_kwargs.update({
-                            "preprocess_dtype": np.float32})
+                            "split_polarity": True,
+                            "preprocess_dtype": np.float32}) 
+            # preprocess_kwargs = get_preprocess_dict("multi_channel_timesurface")['kwargs']
+            # preprocess_kwargs.update({
+            #                 "preprocess_dtype": np.float32})
             try:
                 generate_hdf5(paths=input_file,
                             output_folder=data_folder,
-                            preprocess="multi_channel_timesurface",
+                            preprocess="event_cube",
                             delta_t=25000,
                             n_processes=32, 
                             height=360,

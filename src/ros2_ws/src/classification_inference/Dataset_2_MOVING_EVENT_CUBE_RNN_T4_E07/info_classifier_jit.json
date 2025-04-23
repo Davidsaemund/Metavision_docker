@@ -1,0 +1,21 @@
+{
+    "delta_t": 25000,
+    "height": 360,
+    "label_delta_t": 25000,
+    "label_map": [
+        "background",
+        "left",
+        "center",
+        "right"
+    ],
+    "models": "ConvRNNClassifier",
+    "num_classes": 4,
+    "preprocess": "event_cube",
+    "preprocess_channels": 6,
+    "preprocess_kwargs": {
+        "max_incr_per_pixel": 4,
+        "split_polarity": 1
+    },
+    "use_label_freq": true,
+    "width": 640
+}

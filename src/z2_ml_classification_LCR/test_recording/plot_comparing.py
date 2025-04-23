@@ -71,11 +71,11 @@ def main():
     
     # Plot predicted classes (filtered) from CSV on top.
     plt.step(csv_frame_indices, pred_class_indices, where='post',
-             label="Predicted Histogram", marker='o', color='blue', linestyle='', linewidth=2, markersize=4, zorder=2)
+             label="Predicted Event Cube", marker='o', color='blue', linestyle='', linewidth=2, markersize=4, zorder=2)
 
     plt.xlabel("Frame Index")
     plt.ylabel("Classification")
-    plt.title("Predicted Classification vs. Ground Truth for Timesurface")
+    plt.title("Predicted Classification vs. Ground Truth for Event Cube")
     # Set y-ticks to show class labels instead of numeric values
     plt.yticks([0, 1, 2], [label_map[0], label_map[1], label_map[2]])
     plt.grid(True)
